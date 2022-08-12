@@ -80,7 +80,6 @@ const SearchBillContainer = ({ report = "entry" }) => {
     if (isLoading) return;
     if (name === "phone") {
       if (value.length > 10) {
-        console.log("Greater than 10");
         return;
       }
     }
@@ -133,7 +132,7 @@ const SearchBillContainer = ({ report = "entry" }) => {
                 name="billedCustomer"
                 handleChange={handleCustomerSearch}
                 list={customerList}
-                billedCustomer={billedCustomer}
+                value={billedCustomer}
               />
             )}
             {report === "Customer Report" ? null : (

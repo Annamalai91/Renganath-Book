@@ -13,6 +13,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
 import Input from "@mui/material/Input";
 import CancelIcon from "@mui/icons-material/Cancel";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,7 +44,7 @@ export const ReadOnlyRow = ({
 }) => {
   return (
     <StyledTableRow key={row.productName}>
-      <StyledTableCell scope="row">{row.productName}</StyledTableCell>
+      <StyledTableCell scope="row">{row.productName.label}</StyledTableCell>
       <StyledTableCell align="right">{row.unitsOfMeasurement}</StyledTableCell>
       <StyledTableCell align="right">{row.quantity}</StyledTableCell>
       <StyledTableCell align="right">{row.price}</StyledTableCell>
@@ -73,16 +75,43 @@ export const EditableRow = ({
   handleSave,
   setEditBillingId,
   showButton,
+  productList,
+  handleBillingDataChangeProductName,
 }) => {
   return (
     <StyledTableRow>
-      <StyledTableCell scope="row">
-        <Input
+      <StyledTableCell align="right" sx={{ minWidth: "500px" }}>
+        <Autocomplete
+          disablePortal
+          className="auto-select"
+          id="Product Name"
+          options={productList}
+          value={editFormData.productName}
+          onChange={(event, value) =>
+            handleBillingDataChangeProductName(row.id, value)
+          }
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Product Name"
+              variant="standard"
+              fullWidth
+            />
+          )}
+        />
+        {/* <FormRowSelectAutoComplete
+          labelText=""
+          name="productName"
+          handleChange={(event) => handleBillingDataChange(event, row.id)}
+          list={productList}
+          value={editFormData.productName}
+        /> */}
+        {/* <Input
           type="text"
           name="productName"
           value={editFormData.productName}
           onChange={(event) => handleBillingDataChange(event, row.id)}
-        ></Input>
+        ></Input> */}
       </StyledTableCell>
       <StyledTableCell align="right">
         <Input
@@ -90,6 +119,7 @@ export const EditableRow = ({
           name="unitsOfMeasurement"
           value={editFormData.unitsOfMeasurement}
           onChange={(event) => handleBillingDataChange(event, row.id)}
+          disabled
         ></Input>
       </StyledTableCell>
       <StyledTableCell align="right">
@@ -139,7 +169,6 @@ export const EditableRow = ({
 };
 
 export const ReadActionCell = ({ handleEdit, handleDeleteRow, showButton }) => {
-  console.log("Action cell", showButton);
   return (
     <>
       <div
@@ -197,6 +226,7 @@ const BillingTable = ({
   handleDeleteRowBillingData,
   handleSaveRowBillingData,
   showButton,
+  products,
 }) => {
   const [editBillingId, setEditBillingId] = useState(null);
   const [editFormData, setEditFormData] = useState({
@@ -206,6 +236,13 @@ const BillingTable = ({
     price: 0,
     total: 0,
   });
+
+  const productList =
+    (products &&
+      products.map((product) => {
+        return { id: product._id, label: product.productName };
+      })) ||
+    [];
 
   const handleBillingDataChange = (event, id) => {
     const newEditFormData = { id: id, ...editFormData };
@@ -217,6 +254,25 @@ const BillingTable = ({
         newEditFormData["quantity"] * newEditFormData["price"]
       );
     }
+
+    setEditFormData(newEditFormData);
+  };
+
+  const handleBillingDataChangeProductName = (id, newValue) => {
+    const newEditFormData = { id: id, ...editFormData };
+    const fieldName = "productName";
+    const fieldValue = newValue;
+    newEditFormData[fieldName] = fieldValue;
+    newEditFormData["unitsOfMeasurement"] =
+      products &&
+      products
+        .map((product) => {
+          if (product._id === newValue.id) {
+            return product.unitsOfMeasure;
+          }
+        })
+        .join("");
+
     setEditFormData(newEditFormData);
   };
 
@@ -275,8 +331,12 @@ const BillingTable = ({
                       handleSave={handleSaveRowBillingData}
                       setEditBillingId={setEditBillingId}
                       handleBillingDataChange={handleBillingDataChange}
+                      handleBillingDataChangeProductName={
+                        handleBillingDataChangeProductName
+                      }
                       editFormData={editFormData}
                       showButton={showButton}
+                      productList={productList}
                     />
                   ) : (
                     <ReadOnlyRow

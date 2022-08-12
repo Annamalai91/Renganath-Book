@@ -60,6 +60,12 @@ const Wrapper = styled.section`
     }
     .table {
       overflow: auto;
+      .MuiAutocomplete-endAdornment {
+        display: none;
+      }
+      .MuiAutocomplete-root {
+        padding-bottom: 14px;
+      }
     }
     .total-sum {
       display: flex;

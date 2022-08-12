@@ -38,9 +38,8 @@ const FormRowSelectAutoComplete = ({
   name,
   handleChange,
   list,
-  billedCustomer,
+  value,
 }) => {
-  console.log("Billed customer", billedCustomer);
   return (
     <Wrapper>
       <div className="form-row">
@@ -49,7 +48,7 @@ const FormRowSelectAutoComplete = ({
           className="auto-select"
           onChange={(event, newValue) => handleChange(newValue)}
           name={name}
-          value={billedCustomer || null}
+          value={value || null}
           options={list}
           defaultValue={null}
           isOptionEqualToValue={(option, value) => option.id === value.id}

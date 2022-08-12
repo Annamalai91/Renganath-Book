@@ -41,8 +41,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const ReadActionCell = ({ deleteBill, id, setEditBill, role }) => {
   let path = role !== "admin" ? "#" : "/";
 
-  console.log("Path is", path);
-
   return (
     <div className={"actions"}>
       <Link
@@ -76,7 +74,7 @@ export const StatusPill = ({ label }) => {
     pill = "red";
   }
   let pillStyle = "status-pill " + pill;
-  console.log("pill", pillStyle);
+
   return <div className={pillStyle}>{label}</div>;
 };
 

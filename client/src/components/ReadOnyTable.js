@@ -42,8 +42,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export const ReadActionCell = ({ deleteBill, id, setEditBill, role }) => {
   let path = role !== "admin" ? "#" : "/";
 
-  console.log("Path is", path);
-
   return (
     <div className={"actions"}>
       <Link
@@ -75,7 +73,7 @@ export const StatusPill = ({ label }) => {
     pill = "red";
   }
   const pillStyle = "status-pill " + pill;
-  console.log("pill", pillStyle);
+
   return <div className={pillStyle}>{label}</div>;
 };
 
@@ -295,7 +293,7 @@ const ReadOnlyTable = ({
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  console.log("Report is ", report);
+
   return (
     <>
       <Box className="noPrint" sx={{ width: "100%" }}>

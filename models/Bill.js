@@ -57,7 +57,7 @@ const BillSchema = new mongoose.Schema(
         {
           id: String,
           price: Number,
-          productName: String,
+          productName: { id: String, label: String },
           quantity: Number,
           total: Number,
           unitsOfMeasurement: String,

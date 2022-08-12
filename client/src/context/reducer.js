@@ -61,8 +61,6 @@ import { initialState } from "./appContext";
 
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       showAlert: true,
@@ -71,8 +69,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === DELETE_BILL_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -90,8 +86,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === FINISH_EDITING) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isEditing: false,
@@ -99,13 +93,9 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SETUP_USER_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === SETUP_USER_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: true,
@@ -119,8 +109,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === SETUP_USER_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -130,8 +118,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === DELETE_CUSTOMER_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -141,8 +127,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === DELETE_PRODUCT_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -152,16 +136,12 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === TOGGLE_SIDEBAR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       showSidebar: !state.showSidebar,
     };
   }
   if (action.type === LOGOUT_USER) {
-    console.log("Actions is ", action);
-
     return {
       ...initialState,
       user: null,
@@ -171,13 +151,9 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === UPDATE_USER_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === UPDATE_USER_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -191,8 +167,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === UPDATE_USER_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -202,8 +176,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === HANDLE_CHANGE) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       page: 1,
@@ -211,16 +183,12 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === HANDLE_SUBMIT_SEARCH) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       searchSubmit: true,
     };
   }
   if (action.type === HANDLE_SUBMIT_SEARCH_FINISHED) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       searchSubmit: false,
@@ -228,13 +196,9 @@ const reducer = (state, action) => {
   }
 
   if (action.type === ADD_BILLING_TABLE_DATA) {
-    console.log("Actions is ", action);
-
     return { ...state, billingTableData: [...action.payload.billingTableData] };
   }
   if (action.type === UPDATE_BILLING_TABLE_DATA) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       billingTableData: [...action.payload.newBillingTableData],
@@ -244,20 +208,14 @@ const reducer = (state, action) => {
     action.type === CREATE_CUSTOMER_BEGIN ||
     action.type === CREATE_PRODUCT_BEGIN
   ) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
 
   if (action.type === CREATE_BILL_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
 
   if (action.type === CREATE_CUSTOMER_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -268,8 +226,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_PRODUCT_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -280,8 +236,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_BILL_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -295,8 +249,6 @@ const reducer = (state, action) => {
     action.type === CREATE_CUSTOMER_ERROR ||
     action.type === CREATE_PRODUCT_ERROR
   ) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -307,8 +259,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_BILL_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -319,24 +269,16 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_CUSTOMERS_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === GET_PRODUCTS_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === GET_BILLS_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
 
   if (action.type === GET_CUSTOMERS_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -346,8 +288,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -357,7 +297,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === GET_BILLS_SUCCESS) {
-    console.log("Actions is ", action);
     return {
       ...state,
       isLoading: false,
@@ -369,8 +308,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SET_EDIT_CUSTOMER) {
-    console.log("Actions is ", action);
-
     const customer = state.customers.find(
       (customer) => customer._id === action.payload.id
     );
@@ -387,8 +324,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SET_EDIT_PRODUCT) {
-    console.log("Actions is ", action);
-
     const product = state.products.find(
       (product) => product._id === action.payload.id
     );
@@ -403,8 +338,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === SET_EDIT_BILL) {
-    console.log("Actions is ", action);
-
     const bill = state.bills.find((bill) => bill._id === action.payload.id);
 
     const {
@@ -423,7 +356,7 @@ const reducer = (state, action) => {
       cash,
       voucher,
     } = bill;
-    console.log("voucher", voucher);
+
     const billedCustomer = { id: _id, label: customerName };
     const billingComment = comment;
     const billingType = billType;
@@ -449,18 +382,12 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_CUSTOMER_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === DELETE_PRODUCT_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
   if (action.type === DELETE_BILL_BEGIN) {
-    console.log("Actions is ", action);
-
     return { ...state, isLoading: true };
   }
 
@@ -468,24 +395,18 @@ const reducer = (state, action) => {
     action.type === EDIT_CUSTOMER_BEGIN ||
     action.type === EDIT_PRODUCT_BEGIN
   ) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: true,
     };
   }
   if (action.type === EDIT_BILL_BEGIN) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: true,
     };
   }
   if (action.type === EDIT_CUSTOMER_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -495,8 +416,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === EDIT_PRODUCT_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -507,8 +426,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_BILL_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -519,8 +436,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_CUSTOMER_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -531,8 +446,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_PRODUCT_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -543,8 +456,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_BILL_SUCCESS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -557,8 +468,6 @@ const reducer = (state, action) => {
     action.type === EDIT_CUSTOMER_ERROR ||
     action.type === EDIT_PRODUCT_ERROR
   ) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -568,8 +477,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === EDIT_BILL_ERROR) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       isLoading: false,
@@ -580,8 +487,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CLEAR_FILTERS) {
-    console.log("Actions is ", action);
-
     return {
       ...state,
       search: "",
@@ -591,7 +496,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === CLEAR_CUSTOMER_FILTERS) {
-    console.log("Actions is ", action);
     return {
       ...state,
       name: "",
@@ -619,8 +523,6 @@ const reducer = (state, action) => {
     };
   }
   if (action.type === CHANGE_PAGE) {
-    console.log("Actions is ", action);
-
     return { ...state, page: action.payload.page };
   }
   if (action.type === CLEAR_VALUES) {

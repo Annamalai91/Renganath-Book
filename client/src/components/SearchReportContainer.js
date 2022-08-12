@@ -49,10 +49,7 @@ const SearchReportContainer = ({ report = "report" }) => {
   };
 
   useEffect(() => {
-    console.log("Action is search report");
-
     clearCustomerFilters();
-    console.log("Action is search report after clear");
 
     getAllCustomers();
   }, []);
@@ -74,7 +71,6 @@ const SearchReportContainer = ({ report = "report" }) => {
     if (isLoading) return;
     if (name === "phone") {
       if (value.length > 10) {
-        console.log("Greater than 10");
         return;
       }
     }
@@ -150,7 +146,7 @@ const SearchReportContainer = ({ report = "report" }) => {
                   name="billedCustomer"
                   handleChange={handleCustomerSearch}
                   list={customerList}
-                  billedCustomer={billedCustomer}
+                  value={billedCustomer}
                 />
               )}
               {report !== "customerReport" ? (

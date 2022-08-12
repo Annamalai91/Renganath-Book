@@ -8,7 +8,6 @@ import PageBtnContainer from "./PageBtnContainer";
 const CustomersContainer = () => {
   const {
     isLoading,
-    totalCustomers,
     numOfPages,
     page,
     customers,
@@ -22,7 +21,6 @@ const CustomersContainer = () => {
   }, []);
 
   useEffect(() => {
-    console.log("action is searchSubmit", searchSubmit);
     if (searchSubmit === true) {
       getCustomers();
     }

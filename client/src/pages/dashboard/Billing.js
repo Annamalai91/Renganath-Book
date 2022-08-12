@@ -47,6 +47,8 @@ const Billing = forwardRef((props, ref) => {
     finishEditing,
     voucher,
     clearValues,
+    getAllProducts,
+    products,
   } = useAppContext();
   const navigate = useNavigate();
 
@@ -65,10 +67,10 @@ const Billing = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    console.log("isEditing", isEditing);
     if (!isEditing) {
       clearValues(fieldValues);
       getAllCustomers();
+      getAllProducts();
     }
   }, []);
 
@@ -79,8 +81,6 @@ const Billing = forwardRef((props, ref) => {
       }
     };
   }, []);
-
-  console.log("action is customers", customers);
 
   const role = user && user.role;
 
@@ -145,8 +145,6 @@ const Billing = forwardRef((props, ref) => {
 
   const phone = phoneArray && phoneArray[0] && phoneArray[0]["phone"];
 
-  console.log("action is phone", phone);
-
   const cityArray =
     customers &&
     billedCustomer &&
@@ -173,12 +171,10 @@ const Billing = forwardRef((props, ref) => {
         (parseFloat(billCash) || 0)
     );
   };
-  console.log("Annamalai", billBank);
+
   const grandTotal = calculateTotal();
-  console.log("Annamalai grandTotal", grandTotal);
 
   const showButton = !isEditing ? true : role === "admin" ? true : false;
-  console.log("Show button is ", showButton);
 
   return (
     <div className="bill-print" ref={componentRef}>
@@ -190,7 +186,6 @@ const Billing = forwardRef((props, ref) => {
             ) : (
               <>
                 <form className="form">
-                  {console.log("actions is showAlert", showAlert)}
                   {showAlert && <Alert />}
                   <button
                     className="btn print noPrint"
@@ -210,7 +205,7 @@ const Billing = forwardRef((props, ref) => {
                         name="billedCustomer"
                         handleChange={handleSearch}
                         list={customerList}
-                        billedCustomer={billedCustomer}
+                        value={billedCustomer}
                       />
                     </div>
 
@@ -267,6 +262,7 @@ const Billing = forwardRef((props, ref) => {
                             handleSaveRowBillingData={handleSaveRowBillingData}
                             role={role}
                             showButton={showButton}
+                            products={products}
                           />
                         </div>
                       </>

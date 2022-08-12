@@ -165,7 +165,6 @@ const AppProvider = ({ children }) => {
   );
 
   const displayAlert = (alert = "Please provide all the required input !") => {
-    console.log("Alert is", alert);
     dispatch({ type: DISPLAY_ALERT, payload: { alert } });
     clearAlert();
   };
@@ -299,7 +298,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: CREATE_CUSTOMER_SUCCESS });
       dispatch({ type: CLEAR_CUSTOMER_FILTERS });
     } catch (error) {
-      console.log(error.response);
       if (error.response.status === 401) return;
       dispatch({
         type: CREATE_CUSTOMER_ERROR,
@@ -320,7 +318,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: CREATE_PRODUCT_SUCCESS });
       clearValues(fieldValues);
     } catch (error) {
-      console.log(error.response);
       if (error.response.status === 401) return;
       dispatch({
         type: CREATE_PRODUCT_ERROR,
@@ -344,12 +341,6 @@ const AppProvider = ({ children }) => {
           return parseFloat(element.total);
         })
         .reduce((partialSum, element) => partialSum + element, 0);
-    console.log("annamalai tableTotal", tableTotal);
-    console.log("annamalai gstCharge", gstCharge);
-
-    console.log("annamalai billDiscount", billDiscount);
-    console.log("annamalai billBank", billBank);
-    console.log("annamalai billCash", billCash);
 
     return parseInt(
       tableTotal +
@@ -457,7 +448,6 @@ const AppProvider = ({ children }) => {
   };
 
   const getAllCustomers = async () => {
-    console.log("get All customers");
     const { sort, page } = state;
 
     const url = `/customers?sort=${sort}&page=${page}&all=true`;
@@ -479,7 +469,6 @@ const AppProvider = ({ children }) => {
   };
 
   const getAllProducts = async () => {
-    console.log("get All products");
     const { sort, page } = state;
 
     const url = `/products?sort=${sort}&page=${page}&all=true`;
@@ -501,7 +490,6 @@ const AppProvider = ({ children }) => {
   };
 
   const getCustomers = async () => {
-    console.log("get customers");
     const { name, phone, city, sort, page } = state;
 
     let url = `/customers?sort=${sort}&page=${page}`;
@@ -528,7 +516,6 @@ const AppProvider = ({ children }) => {
   };
 
   const getProducts = async () => {
-    console.log("get Products");
     const { productName, unitsOfMeasure, sort, page } = state;
 
     let url = `/products?sort=${sort}&page=${page}`;
@@ -692,7 +679,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: DELETE_CUSTOMER_SUCCESS });
       getCustomers();
     } catch (error) {
-      console.log("Error is", error.response.data.msg);
       dispatch({
         type: DELETE_CUSTOMER_ERROR,
         payload: { msg: error.response.data.msg },
@@ -707,7 +693,6 @@ const AppProvider = ({ children }) => {
       dispatch({ type: DELETE_PRODUCT_SUCCESS });
       getProducts();
     } catch (error) {
-      console.log("Error is", error.response.data.msg);
       dispatch({
         type: DELETE_PRODUCT_ERROR,
         payload: { msg: error.response.data.msg },

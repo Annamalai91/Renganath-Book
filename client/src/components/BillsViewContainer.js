@@ -42,8 +42,6 @@ const BillsViewContainer = forwardRef(({ report }, ref) => {
     content: () => componentRef.current,
   });
 
-  console.log("Bills is ", bills);
-
   let billTableData =
     bills &&
     bills.map((bill) => {
@@ -58,7 +56,7 @@ const BillsViewContainer = forwardRef(({ report }, ref) => {
         credit: 0,
         debit: 0,
       };
-      console.log("bill.billType", bill.billType);
+
       if (bill.billType === "Sales" || bill.billType === "Payments") {
         newBill["debit"] = bill.grandTotal;
       } else {
@@ -69,8 +67,6 @@ const BillsViewContainer = forwardRef(({ report }, ref) => {
 
   billTableData = billTableData ? billTableData : [];
 
-  console.log("Billing table Data", billTableData);
-
   const totalCreditCurrent = billTableData
     .map((bill) => bill.credit)
     .reduce((prevValue, currValue) => prevValue + currValue, 0);
@@ -79,14 +75,9 @@ const BillsViewContainer = forwardRef(({ report }, ref) => {
     .map((bill) => bill.debit)
     .reduce((prevValue, currValue) => prevValue + currValue, 0);
 
-  console.log("Billing table Data totalCreditCurrent", totalCreditCurrent);
-  console.log("Billing table Data totalDebitCurrent", totalDebitCurrent);
-
   const currentTotal = totalDebitCurrent - totalCreditCurrent;
 
   const closingBalance = Math.abs(currentTotal + openingBalance);
-
-  console.log("Billing table Data openingBalance", openingBalance);
 
   const closingBalanceType =
     report === "Customer Report" && openingBalanceType
@@ -95,7 +86,6 @@ const BillsViewContainer = forwardRef(({ report }, ref) => {
         : "credit"
       : undefined;
 
-  console.log("closingBalanceType", closingBalanceType);
   const customerReportBillTableColumns = [
     {
       id: "billDate",

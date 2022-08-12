@@ -28,13 +28,10 @@ const ReportViewContainer = ({ handlePrintMain, report }) => {
   }, []);
 
   useEffect(() => {
-    console.log("action is searchSubmit", searchSubmit);
     if (searchSubmit === true) {
       getBills();
     }
   }, [searchSubmit]);
-
-  console.log("Bills is ", bills);
 
   let billTableData =
     bills &&
@@ -49,7 +46,7 @@ const ReportViewContainer = ({ handlePrintMain, report }) => {
         credit: 0,
         debit: 0,
       };
-      console.log("bill.billType", bill.billType);
+
       if (bill.billType === "Sales" || bill.billType === "Payments") {
         newBill["debit"] = bill.grandTotal;
       } else {
@@ -59,8 +56,6 @@ const ReportViewContainer = ({ handlePrintMain, report }) => {
     });
 
   billTableData = billTableData ? billTableData : [];
-
-  console.log("Bill Table Data is ", billTableData);
 
   const billTableColumns = [
     {
